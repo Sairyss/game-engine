@@ -1,10 +1,6 @@
 #pragma once
 
-#include "../Core/Core.h"
-
-#include <string>
 #include <sstream>
-#include <functional>
 
 namespace Engine
 {

@@ -8,6 +8,7 @@ endif()
 
 add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Core/Log.cpp)
 
-
+target_precompile_headers(game-engine PUBLIC ${CMAKE_SOURCE_DIR}/src/engine/headers.h)
 
 target_link_libraries(game-engine SDL2main SDL2 SDL2_image GL spdlog::spdlog)
+

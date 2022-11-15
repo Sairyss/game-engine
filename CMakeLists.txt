@@ -6,7 +6,7 @@ if(NOT TARGET spdlog)
     find_package(spdlog REQUIRED)
 endif()
 
-add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Log.cpp)
+add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Core/Log.cpp)
 
 
 

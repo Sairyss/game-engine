@@ -3,7 +3,9 @@
 
 int main(int, char **)
 {
-    std::cout << "Hello, world!\n";
+    Engine::Log::init();
+    LOG_INFO("Application started");
+
     Sandbox *sandbox = new Sandbox();
     sandbox->Run();
     delete sandbox;

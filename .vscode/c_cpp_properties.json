@@ -2,7 +2,6 @@
   "configurations": [
     {
       "name": "Linux",
-      "forcedInclude": ["${workspaceFolder}/src/engine/headers.h"],
       "includePath": ["${workspaceFolder}/**"],
       "defines": [],
       "compilerPath": "/usr/bin/gcc",

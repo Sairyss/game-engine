@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./sandbox/Sandbox.cpp"
+#include "Sandbox.h"
 
 int main(int, char **)
 {

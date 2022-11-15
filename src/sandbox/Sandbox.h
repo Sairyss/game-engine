@@ -1,3 +1,10 @@
 #pragma once
 
-// #include "engine/Application.h"
+#include "Engine.h"
+
+class Sandbox : public Engine::Application
+{
+public:
+  Sandbox() {}
+  ~Sandbox() {}
+};

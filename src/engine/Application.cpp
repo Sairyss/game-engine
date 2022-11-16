@@ -13,6 +13,16 @@ namespace Engine
   }
   Application::~Application() {}
 
+  void Application::PushLayer(Layer *layer)
+  {
+    m_LayerStack.PushLayer(layer);
+  };
+
+  void Application::PushOverlay(Layer *layer)
+  {
+    m_LayerStack.PushOverlay(layer);
+  };
+
   void Application::OnEvent(Event &e)
   {
     LOG_CORE_DEBUG("[Event] {0}", e.ToString());
@@ -20,6 +30,13 @@ namespace Engine
     EventDispatcher dispatcher(e);
 
     dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+
+    for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
+    {
+      if (e.Handled)
+        break;
+      (*it)->OnEvent(e);
+    }
   };
 
   bool Application::OnWindowClose(WindowCloseEvent &e)
@@ -32,6 +49,10 @@ namespace Engine
   {
     while (m_Running)
     {
+      Timestep *ts = new Timestep();
+      for (Layer *layer : m_LayerStack)
+        layer->OnUpdate(*ts);
+
       m_Window->OnUpdate();
       m_Window->HandleEvents();
     }

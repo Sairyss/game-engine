@@ -6,7 +6,7 @@ if(NOT TARGET spdlog)
     find_package(spdlog REQUIRED)
 endif()
 
-add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Core/Log.cpp src/engine/headers.cpp src/engine/Core/SDLWindow.cpp)
+add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Core/Log.cpp src/engine/headers.cpp src/engine/Core/SDLWindow.cpp src/engine/Core/LayerStack.cpp src/engine/Core/Layer.cpp)
 
 target_include_directories(game-engine PRIVATE ${CMAKE_SOURCE_DIR}/src/engine ${CMAKE_SOURCE_DIR}/src/sandbox)
 

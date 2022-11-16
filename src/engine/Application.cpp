@@ -4,7 +4,11 @@
 
 namespace Engine
 {
-  Application::Application() {}
+
+  Application::Application()
+  {
+    m_Window = SDLWindow::Create();
+  }
   Application::~Application() {}
 
   void Application::Run()
@@ -12,8 +16,9 @@ namespace Engine
     WindowResizeEvent e(1280, 720);
     LOG_TRACE(e.ToString());
 
-    while (true)
+    while (m_Running)
     {
+      m_Window->OnUpdate();
     }
   }
 }

@@ -4,7 +4,7 @@
 #include "../Events/ApplicationEvent.h"
 #include "../Events/MouseEvent.h"
 #include "../Events/KeyEvent.h"
-#include <GL/gl.h>
+#include <glad/glad.h>
 
 namespace Engine
 {
@@ -73,6 +73,8 @@ namespace Engine
     //   }
     // }
     // SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
+
+    gladLoadGL();
 
     glViewport(0, 0, GetWidth(), GetHeight());
     glClearColor(1.f, 0.f, 1.f, 0.f);

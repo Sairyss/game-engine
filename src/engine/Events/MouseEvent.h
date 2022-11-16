@@ -28,6 +28,29 @@ namespace Engine
     float m_MouseX, m_MouseY;
   };
 
+  class MouseClickedEvent : public Event
+  {
+  public:
+    MouseClickedEvent(const int button, const int x, const int y)
+        : m_MouseX(x), m_MouseY(y), m_Button(button) {}
+
+    int GetX() const { return m_MouseX; }
+    int GetY() const { return m_MouseY; }
+    MouseCode GetMouseButton() const { return m_Button; }
+
+    std::string ToString() const override
+    {
+      std::stringstream ss;
+      ss << "MouseClickedEvent: " << m_Button << " - " << m_MouseX << ", " << m_MouseY;
+      return ss.str();
+    }
+
+    EVENT_CLASS_TYPE(MouseMoved)
+    EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+  private:
+    int m_MouseX, m_MouseY, m_Button;
+  };
+
   class MouseScrolledEvent : public Event
   {
   public:

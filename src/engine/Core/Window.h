@@ -15,8 +15,8 @@ namespace Engine
     uint32_t Height;
 
     WindowProps(const std::string &title = "Application",
-                uint32_t width = 1600,
-                uint32_t height = 900)
+                uint32_t width = 800,
+                uint32_t height = 600)
         : Title(title), Width(width), Height(height)
     {
     }
@@ -33,6 +33,7 @@ namespace Engine
     virtual ~Window() = default;
 
     virtual void OnUpdate() = 0;
+    virtual void HandleEvents() = 0;
 
     virtual uint32_t GetWidth() const = 0;
     virtual uint32_t GetHeight() const = 0;

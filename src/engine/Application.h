@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Events/Event.h"
+#include "Events/ApplicationEvent.h"
 #include "Core/SDLWindow.h"
 
 namespace Engine
@@ -12,6 +13,9 @@ namespace Engine
     virtual ~Application();
 
     void Run();
+
+    void OnEvent(Event &e);
+    bool OnWindowClose(WindowCloseEvent &e);
 
     Window *m_Window;
 

@@ -96,8 +96,70 @@ namespace Engine
     // HZ_PROFILE_FUNCTION();
 
     // glfwPollEvents();
-    SDL_PollEvent(&event);
+    // SDL_PollEvent(&event);
     // m_Context->SwapBuffers();
+  }
+
+  void SDLWindow::HandleEvents()
+  {
+    // HZ_PROFILE_FUNCTION();
+
+    // glfwPollEvents();
+    // m_Context->SwapBuffers();
+
+    SDL_PollEvent(&event);
+    // switch (event.type)
+    // {
+    // case SDL_QUIT:
+    // {
+    //   WindowCloseEvent e;
+    //   m_Data.EventCallback(e);
+    //   break;
+    // }
+
+    // default:
+    //   break;
+    // }
+
+    if (event.type == SDL_KEYDOWN)
+    {
+      switch (event.key.keysym.sym)
+      {
+      case SDLK_ESCAPE:
+      {
+        WindowCloseEvent e;
+        m_Data.EventCallback(e);
+        break;
+      }
+
+      default:
+        break;
+      }
+    }
+
+    if (event.type == SDL_KEYDOWN)
+    {
+      KeyPressedEvent e(event.key.keysym.sym);
+      m_Data.EventCallback(e);
+    }
+
+    if (event.type == SDL_KEYUP)
+    {
+      KeyReleasedEvent e(event.key.keysym.sym);
+      m_Data.EventCallback(e);
+    }
+
+    if (event.type == SDL_MOUSEBUTTONDOWN)
+    {
+      MouseClickedEvent e(event.button.button, event.button.x, event.button.y);
+      m_Data.EventCallback(e);
+    }
+
+    if (event.type == SDL_MOUSEMOTION)
+    {
+      MouseMovedEvent e(event.button.x, event.button.y);
+      m_Data.EventCallback(e);
+    }
   }
 
   void SDLWindow::SetVSync(bool enabled)

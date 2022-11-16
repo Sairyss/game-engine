@@ -13,6 +13,7 @@ namespace Engine
     virtual ~SDLWindow();
 
     void OnUpdate() override;
+    void HandleEvents() override;
 
     static Window *Create(const WindowProps &props = WindowProps());
 

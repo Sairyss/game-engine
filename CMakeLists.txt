@@ -13,11 +13,11 @@ src/sandbox/Sandbox.cpp
 src/engine/Application.cpp 
 src/engine/Core/Log.cpp 
 src/engine/headers.cpp 
-src/engine/Core/SDLWindow.cpp 
+src/engine/Platform/SDL/SDLWindow.cpp
 src/engine/Core/LayerStack.cpp
 src/engine/Core/Layer.cpp
 src/engine/imgui/ImGuiLayer.cpp
-src/Platform/OpenGL/ImguiOpenGLRenderer.cpp
+src/engine/Platform/OpenGL/ImguiOpenGLRenderer.cpp
 )
 
 target_include_directories(game-engine PRIVATE ${CMAKE_SOURCE_DIR}/src/engine ${CMAKE_SOURCE_DIR}/src/sandbox)

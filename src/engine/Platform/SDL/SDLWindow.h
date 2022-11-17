@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.h"
+#include "../../Core/Window.h"
 #include <SDL2/SDL.h>
 
 namespace Engine

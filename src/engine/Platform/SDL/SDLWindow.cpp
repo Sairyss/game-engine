@@ -1,9 +1,9 @@
-#include "headers.h"
+#include "../../headers.h"
 #include "SDLWindow.h"
 
-#include "../Events/ApplicationEvent.h"
-#include "../Events/MouseEvent.h"
-#include "../Events/KeyEvent.h"
+#include "../../Events/ApplicationEvent.h"
+#include "../../Events/MouseEvent.h"
+#include "../../Events/KeyEvent.h"
 #include <glad/glad.h>
 
 namespace Engine

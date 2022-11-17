@@ -2,7 +2,7 @@
 
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
-#include "Core/SDLWindow.h"
+#include "Platform/SDL/SDLWindow.h"
 #include "Core/LayerStack.h"
 #include "Core/Timestep.h"
 

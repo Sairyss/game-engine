@@ -58,3 +58,8 @@ endif()
 
 
 target_link_libraries(IMGUI PUBLIC SDL2main SDL2 ${CMAKE_DL_LIBS})
+
+
+#=================== glm ===================
+
+add_subdirectory(glm/)

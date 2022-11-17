@@ -5,6 +5,7 @@
 #include "Platform/SDL/SDLWindow.h"
 #include "Core/LayerStack.h"
 #include "Core/Timestep.h"
+#include "imgui/ImGuiLayer.h"
 
 namespace Engine
 {
@@ -28,6 +29,7 @@ namespace Engine
     Window *m_Window;
     bool m_Running = true;
     bool OnWindowClose(WindowCloseEvent &e);
+    ImGuiLayer *m_ImGuiLayer;
     static Application *s_Instance;
 
     LayerStack m_LayerStack;

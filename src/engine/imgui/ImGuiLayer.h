@@ -13,10 +13,12 @@ namespace Engine
     ImGuiLayer();
     ~ImGuiLayer();
 
-    void OnAttach();
-    void OnDetach();
-    void OnUpdate(Engine::Timestep ts);
+    virtual void OnAttach() override;
+    virtual void OnDetach() override;
     // void OnEvent(Engine::Event &e);
+    virtual void OnImGuiRender() override;
+    virtual void NewFrame();
+    virtual void Render();
 
   private:
     float m_Time = 0.0f;

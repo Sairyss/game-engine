@@ -17,7 +17,6 @@ src/engine/Platform/SDL/SDLWindow.cpp
 src/engine/Core/LayerStack.cpp
 src/engine/Core/Layer.cpp
 src/engine/imgui/ImGuiLayer.cpp
-src/engine/Platform/OpenGL/ImguiOpenGLRenderer.cpp
 src/engine/Platform/SDL/SDLInput.cpp
 )
 

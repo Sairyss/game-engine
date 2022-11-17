@@ -15,8 +15,8 @@ namespace Engine
     uint32_t Height;
 
     WindowProps(const std::string &title = "Application",
-                uint32_t width = 800,
-                uint32_t height = 600)
+                uint32_t width = 1600,
+                uint32_t height = 900)
         : Title(title), Width(width), Height(height)
     {
     }
@@ -38,14 +38,13 @@ namespace Engine
     virtual uint32_t GetWidth() const = 0;
     virtual uint32_t GetHeight() const = 0;
 
-    // Window attributes
     virtual void SetEventCallback(const EventCallbackFn &callback) = 0;
     virtual void SetVSync(bool enabled) = 0;
     virtual bool IsVSync() const = 0;
 
     virtual void *GetNativeWindow() const = 0;
-
-    // static Scope<Window> Create(const WindowProps &props = WindowProps());
+    virtual void *GetNativeContext() const = 0;
+    virtual void *GetNativeEvent() const = 0;
   };
 
 }

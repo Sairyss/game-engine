@@ -6,12 +6,24 @@ if(NOT TARGET spdlog)
     find_package(spdlog REQUIRED)
 endif()
 
-add_executable(game-engine src/main.cpp src/sandbox/Sandbox.cpp src/engine/Application.cpp src/engine/Core/Log.cpp src/engine/headers.cpp src/engine/Core/SDLWindow.cpp src/engine/Core/LayerStack.cpp src/engine/Core/Layer.cpp)
+add_executable(
+game-engine 
+src/main.cpp 
+src/sandbox/Sandbox.cpp 
+src/engine/Application.cpp 
+src/engine/Core/Log.cpp 
+src/engine/headers.cpp 
+src/engine/Core/SDLWindow.cpp 
+src/engine/Core/LayerStack.cpp
+src/engine/Core/Layer.cpp
+src/engine/imgui/ImGuiLayer.cpp
+src/Platform/OpenGL/ImguiOpenGLRenderer.cpp
+)
 
 target_include_directories(game-engine PRIVATE ${CMAKE_SOURCE_DIR}/src/engine ${CMAKE_SOURCE_DIR}/src/sandbox)
 
-add_subdirectory(vendor/glad/)
+add_subdirectory(libs/)
 
-target_link_libraries(game-engine SDL2main SDL2 SDL2_image spdlog::spdlog glad)
+target_link_libraries(game-engine SDL2main SDL2 SDL2_image spdlog::spdlog glad IMGUI)
 
 target_precompile_headers(game-engine PUBLIC ${CMAKE_SOURCE_DIR}/src/engine/headers.h)

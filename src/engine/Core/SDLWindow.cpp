@@ -9,8 +9,7 @@
 namespace Engine
 {
 
-  SDL_Renderer *SDLWindow::m_Renderer = nullptr;
-  SDL_Event SDLWindow::event;
+  SDL_Event SDLWindow::m_Event;
 
   Window *SDLWindow::Create(const WindowProps &props)
   {
@@ -61,7 +60,7 @@ namespace Engine
       return;
     };
 
-    SDL_GLContext Context = SDL_GL_CreateContext(m_Window);
+    SDL_GLContext m_Context = SDL_GL_CreateContext(m_Window);
 
     // m_Renderer = SDL_CreateRenderer(m_Window, -1, 0);
 
@@ -79,7 +78,6 @@ namespace Engine
     glViewport(0, 0, GetWidth(), GetHeight());
     glClearColor(1.f, 0.f, 1.f, 0.f);
     glClear(GL_COLOR_BUFFER_BIT);
-    SDL_GL_SwapWindow(m_Window);
 
     LOG_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
   }
@@ -88,8 +86,9 @@ namespace Engine
   {
     // HZ_PROFILE_FUNCTION();
 
+    SDL_GL_DeleteContext(m_Context);
     SDL_DestroyWindow(m_Window);
-    SDL_DestroyRenderer(m_Renderer);
+    // SDL_DestroyRenderer(m_Renderer);
     SDL_Quit();
   }
 
@@ -97,35 +96,18 @@ namespace Engine
   {
     // HZ_PROFILE_FUNCTION();
 
-    // glfwPollEvents();
-    // SDL_PollEvent(&event);
-    // m_Context->SwapBuffers();
+    SDL_GL_SwapWindow(m_Window);
   }
 
   void SDLWindow::HandleEvents()
   {
     // HZ_PROFILE_FUNCTION();
 
-    // glfwPollEvents();
-    // m_Context->SwapBuffers();
+    SDL_PollEvent(&m_Event);
 
-    SDL_PollEvent(&event);
-    // switch (event.type)
-    // {
-    // case SDL_QUIT:
-    // {
-    //   WindowCloseEvent e;
-    //   m_Data.EventCallback(e);
-    //   break;
-    // }
-
-    // default:
-    //   break;
-    // }
-
-    if (event.type == SDL_KEYDOWN)
+    if (m_Event.type == SDL_KEYDOWN)
     {
-      switch (event.key.keysym.sym)
+      switch (m_Event.key.keysym.sym)
       {
       case SDLK_ESCAPE:
       {
@@ -139,27 +121,33 @@ namespace Engine
       }
     }
 
-    if (event.type == SDL_KEYDOWN)
+    if (m_Event.type == SDL_KEYDOWN)
     {
-      KeyPressedEvent e(event.key.keysym.sym);
+      KeyPressedEvent e(m_Event.key.keysym.sym);
       m_Data.EventCallback(e);
     }
 
-    if (event.type == SDL_KEYUP)
+    if (m_Event.type == SDL_KEYUP)
     {
-      KeyReleasedEvent e(event.key.keysym.sym);
+      KeyReleasedEvent e(m_Event.key.keysym.sym);
       m_Data.EventCallback(e);
     }
 
-    if (event.type == SDL_MOUSEBUTTONDOWN)
+    if (m_Event.type == SDL_MOUSEBUTTONDOWN)
     {
-      MouseClickedEvent e(event.button.button, event.button.x, event.button.y);
+      MouseButtonPressedEvent e(m_Event.button.button);
       m_Data.EventCallback(e);
     }
 
-    if (event.type == SDL_MOUSEMOTION)
+    if (m_Event.type == SDL_MOUSEBUTTONUP)
     {
-      MouseMovedEvent e(event.button.x, event.button.y);
+      MouseButtonReleasedEvent e(m_Event.button.button);
+      m_Data.EventCallback(e);
+    }
+
+    if (m_Event.type == SDL_MOUSEMOTION)
+    {
+      MouseMovedEvent e(m_Event.button.x, m_Event.button.y);
       m_Data.EventCallback(e);
     }
   }

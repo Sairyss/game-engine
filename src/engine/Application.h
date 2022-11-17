@@ -21,10 +21,14 @@ namespace Engine
     void PushLayer(Layer *layer);
     void PushOverlay(Layer *layer);
 
+    static Application &Get() { return *s_Instance; }
+    inline Window &GetWindow() { return *m_Window; }
+
   private:
     Window *m_Window;
     bool m_Running = true;
     bool OnWindowClose(WindowCloseEvent &e);
+    static Application *s_Instance;
 
     LayerStack m_LayerStack;
   };

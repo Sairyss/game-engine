@@ -123,13 +123,13 @@ namespace Engine
 
     if (m_Event.type == SDL_KEYDOWN)
     {
-      KeyPressedEvent e(m_Event.key.keysym.sym);
+      KeyPressedEvent e(m_Event.key.keysym.scancode);
       m_Data.EventCallback(e);
     }
 
     if (m_Event.type == SDL_KEYUP)
     {
-      KeyReleasedEvent e(m_Event.key.keysym.sym);
+      KeyReleasedEvent e(m_Event.key.keysym.scancode);
       m_Data.EventCallback(e);
     }
 

@@ -18,6 +18,8 @@ src/engine/Core/LayerStack.cpp
 src/engine/Core/Layer.cpp
 src/engine/imgui/ImGuiLayer.cpp
 src/engine/Platform/SDL/SDLInput.cpp
+src/engine/Platform/OpenGL/OpenGLContext.cpp
+src/engine/Renderer/GraphicsContext.cpp
 )
 
 target_include_directories(game-engine PRIVATE ${CMAKE_SOURCE_DIR}/src/engine ${CMAKE_SOURCE_DIR}/src/sandbox)

@@ -18,21 +18,21 @@ namespace Engine
 
   SDLWindow::SDLWindow(const WindowProps &props)
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     Init(props);
   }
 
   SDLWindow::~SDLWindow()
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     Shutdown();
   }
 
   void SDLWindow::Init(const WindowProps &props)
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -60,31 +60,15 @@ namespace Engine
       return;
     };
 
-    SDL_GLContext m_Context = SDL_GL_CreateContext(m_Window);
-
-    // m_Renderer = SDL_CreateRenderer(m_Window, -1, 0);
-
-    // if (m_Renderer == NULL)
-    // {
-    //   {
-    //     LOG_CORE_ERROR("SDL Could not create renderer: {0}", SDL_GetError());
-    //     return;
-    //   }
-    // }
-    // SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
-
-    gladLoadGL();
-
-    glViewport(0, 0, GetWidth(), GetHeight());
-    glClearColor(1.f, 0.f, 1.f, 0.f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    m_Context = GraphicsContext::Create(m_Window, GetWidth(), GetHeight());
+    m_Context->Init();
 
     LOG_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
   }
 
   void SDLWindow::Shutdown()
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     SDL_GL_DeleteContext(m_Context);
     SDL_DestroyWindow(m_Window);
@@ -94,14 +78,14 @@ namespace Engine
 
   void SDLWindow::OnUpdate()
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
-    SDL_GL_SwapWindow(m_Window);
+    m_Context->SwapWindow();
   }
 
   void SDLWindow::HandleEvents()
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     SDL_PollEvent(&m_Event);
 
@@ -154,7 +138,7 @@ namespace Engine
 
   void SDLWindow::SetVSync(bool enabled)
   {
-    // HZ_PROFILE_FUNCTION();
+    // PROFILE_FUNCTION();
 
     m_Data.VSync = enabled;
   }

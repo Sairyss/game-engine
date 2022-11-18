@@ -2,6 +2,7 @@
 
 #include "../../Core/Window.h"
 #include <SDL2/SDL.h>
+#include "../../Renderer/GraphicsContext.h"
 
 namespace Engine
 {
@@ -25,7 +26,7 @@ namespace Engine
     bool IsVSync() const override;
 
     virtual void *GetNativeWindow() const { return m_Window; }
-    virtual void *GetNativeContext() const { return m_Context; }
+    virtual void *GetNativeContext() const { return m_Context->GetNativeContext(); }
     virtual void *GetNativeEvent() const { return &m_Event; }
 
   private:
@@ -34,7 +35,7 @@ namespace Engine
 
   private:
     SDL_Window *m_Window;
-    SDL_GLContext m_Context;
+    GraphicsContext *m_Context;
     static SDL_Event m_Event;
 
     struct WindowData

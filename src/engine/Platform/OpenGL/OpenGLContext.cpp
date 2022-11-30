@@ -26,7 +26,7 @@ namespace Engine
 		gladLoadGL();
 
 		glViewport(0, 0, m_Width, m_Height);
-		glClearColor(1.f, 0.f, 1.f, 0.f);
+		glClearColor(0.2f, 0.2f, 0.2f, 1.f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		LOG_CORE_INFO("OpenGL Info:");

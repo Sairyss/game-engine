@@ -81,6 +81,7 @@ namespace Engine
     // PROFILE_FUNCTION();
 
     m_Context->SwapWindow();
+    HandleEvents();
   }
 
   void SDLWindow::HandleEvents()

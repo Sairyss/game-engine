@@ -81,7 +81,28 @@ Code examples:
 
 - [Log.h](src/engine/Core/Log.h) - logger is abstracted so we can use any library we want.
 
-## Profiling
+## Performance tips
+
+### Batch rendering
+
+Rendering large amounts of objects can affect performance. Batch rendering is an optimization technique to make your game faster.
+
+Resources:
+
+- [OpenGL Batch Rendering](https://www.gamedev.net/tutorials/programming/graphics/opengl-batch-rendering-r3900/)
+- [Batch Rendering](https://youtu.be/biGF6oLxgtQ)
+
+### Data locality
+
+Data locality, or [locality of reference](https://en.wikipedia.org/wiki/Locality_of_reference), is the tendency of a processor to access the same set of memory locations repetitively over a short period of time.
+
+We can utilize this knowledge together with optimizations like [Data-oriented design](https://en.wikipedia.org/wiki/Data-oriented_design) to improve performance when processing large arrays of data.
+
+Resources:
+
+- [Data Locality](https://gameprogrammingpatterns.com/data-locality.html)
+
+### Profiling
 
 TODO
 
